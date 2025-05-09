@@ -16,7 +16,6 @@ const io = new Server(server,{
         origin:"http://localhost:3000",
     },
 })
-
 app.use(cors())
 app.use(express.json())
 initializeDatabase()
