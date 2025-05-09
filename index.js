@@ -24,7 +24,6 @@ app.use("/auth",authRoutes)
 
 io.on("connection",(socket)=>{
     console.log("Connected successfully",socket.id)
-
     socket.on("send_message",async(data)=>{
         const {sender,receiver,message} = data
         const newMessage = new Message({sender,receiver,message})
@@ -58,6 +57,6 @@ app.get("/users",async(req,res)=>{
 })
 
 const PORT = 5001|| process.env.PORT
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
 })
