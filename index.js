@@ -39,7 +39,7 @@ io.on("connection",(socket)=>{
 app.get("/messages",async(req,res)=>{
     const {sender,receiver} = req.query
     try{
-        const message = await Message({$or:[{sender,receiver},{sender:receiver,receiver:sender}]}).sort({createAt:1})
+        const message = await Message.find({$or:[{sender,receiver},{sender:receiver,receiver:sender}]}).sort({createAt:1})
 
         res.json(message)
     }catch(error){
@@ -57,7 +57,7 @@ app.get("/users",async(req,res)=>{
     }
 })
 
-const PORT = 5001||process.env.PORT
+const PORT = 5001|| process.env.PORT
 app.listen(PORT,()=>{
     console.log(`Server running on port ${PORT}`)
 })
