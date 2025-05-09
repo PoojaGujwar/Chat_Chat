@@ -14,6 +14,7 @@ const server = http.createServer(app)
 const io = new Server(server,{
     cors:{
         origin:"http://localhost:3000",
+        methods: ["GET", "POST"]
     },
 })
 
@@ -22,6 +23,7 @@ app.use(express.json())
 initializeDatabase()
 
 app.use("/auth",authRoutes)
+
 io.on("connection",(socket)=>{
     console.log("Connected successfully",socket.id)
 
@@ -39,7 +41,7 @@ io.on("connection",(socket)=>{
 app.get("/messages",async(req,res)=>{
     const {sender,receiver} = req.query
     try{
-        const message = await Message.find({$or:[{sender,receiver},{sender:receiver,receiver:sender}]}).sort({createAt:1})
+        const message = await Message.find({$or:[{sender,receiver},{sender:receiver,receiver:sender}]}).sort({createdAt:1})
 
         res.json(message)
     }catch(error){
