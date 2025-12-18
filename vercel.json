@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
     "version":2,
     "builds":[{"src":"index.js","use":"@vercel/node"}],
     "rewrites":[{"source":"/(.*)","destination":"index.js"}]
-=======
-    "rewrites":[{"source":"/(.*)","destination":"/"}]
->>>>>>> 57eba96531b3479508c85a350b0e30d948f4e3b8
 }
