@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "chatappfront",
   "version": "0.1.0",
   "private": true,
@@ -40,5 +41,25 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+=======
+  "name": "my_chap_app_back",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.14.1",
+    "socket.io": "^4.8.1"
+>>>>>>> 5cde09f04384c1ee14e253388f0e67b0a5bbd986
   }
 }
