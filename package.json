@@ -1,6 +1,7 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f7f961c47bd6db5acb81c0aabade46e3caff6ff7
   "name": "chatappfront",
@@ -46,6 +47,8 @@
     ]
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> ea2eb402bbe3d90349dc71509c8ad5c7f4907db6
   "name": "my_chap_app_back",
   "version": "1.0.0",
   "main": "index.js",
@@ -64,8 +67,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1",
     "socket.io": "^4.8.1"
+<<<<<<< HEAD
 >>>>>>> 5cde09f04384c1ee14e253388f0e67b0a5bbd986
 =======
 >>>>>>> f7f961c47bd6db5acb81c0aabade46e3caff6ff7
+=======
+>>>>>>> ea2eb402bbe3d90349dc71509c8ad5c7f4907db6
   }
 }
