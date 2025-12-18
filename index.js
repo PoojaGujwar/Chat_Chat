@@ -31,6 +31,12 @@ io.on("connection",(socket)=>{
         await newMessage.save()
         socket.broadcast.emit("receive_message",data)
     })
+    socket.on("typing",async({sender, receiver})=>{
+        socket.broadcast.emit("typing",{sender})
+    })
+    socket.on("stop_typing",async({sender, receiver})=>{
+        socket.broadcast.emit("stop_typing",{sender})
+    })
     socket.on("disconnected",()=>{
         console.log("User disconnected",socket.id)
     })
