@@ -13,7 +13,7 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors:{
-        origin:"https://chat-app-beta-blush-77.vercel.app",
+        origin:"https://chat-app-beta-blush-77.vercel.app"|| "http://localhost:3000",
         methods:["GET","POST"]
     },
 })
