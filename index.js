@@ -22,6 +22,7 @@ app.use(express.json())
 initializeDatabase()
 
 app.use("/auth",authRoutes)
+<<<<<<< HEAD
 const users ={};
 io.on("connection",(socket)=>{
     console.log("Connected successfully",socket.id)
@@ -64,6 +65,25 @@ io.on("connection",(socket)=>{
                 break
             }
         }
+=======
+
+io.on("connection",(socket)=>{
+    console.log("Connected successfully",socket.id)
+    socket.on("send_message",async(data)=>{
+        const {sender,receiver,message} = data
+        const newMessage = new Message({sender,receiver,message})
+        await newMessage.save()
+        socket.broadcast.emit("receive_message",data)
+    })
+    socket.on("typing",async({sender, receiver})=>{
+        socket.broadcast.emit("typing",{sender})
+    })
+    socket.on("stop_typing",async({sender, receiver})=>{
+        socket.broadcast.emit("stop_typing",{sender})
+    })
+    socket.on("disconnected",()=>{
+        console.log("User disconnected",socket.id)
+>>>>>>> 62bde431025d5e8a0f424fa32b0ad672882025b4
     })
 })
 
