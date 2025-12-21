@@ -48,13 +48,13 @@ io.on("connection",(socket)=>{
         console.log("Typing event server:", sender, receiver);
         const receiverSocketId = users[receiver];
         if(receiverSocketId){
-            socket.to(receiverSocketId).emit("typing",{sender})
+            socket.to(receiverSocketId).emit("typing",{sender,receiver})
         }
     })
     socket.on("stop_typing",({sender, receiver})=>{
         const receiverSocketId = users[receiver];
         if(receiverSocketId){
-            socket.to(receiverSocketId).emit("stop_typing",{sender})
+            socket.to(receiverSocketId).emit("stop_typing",{sender, receiver})
         }
     })
     socket.on("disconnect",()=>{
