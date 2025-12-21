@@ -13,8 +13,8 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors:{
-        origin:"https://chat-app-beta-blush-77.vercel.app"|| "http://localhost:3000",
-        methods:["GET","POST"]
+        origin:["https://chat-app-beta-blush-77.vercel.app", "http://localhost:3000"],
+        methods:["GET","POST"],credentials: true
     },
 })
 app.use(cors())
@@ -27,7 +27,7 @@ io.on("connection",(socket)=>{
     console.log("Connected successfully",socket.id)
 
     socket.on("join", (username)=>{
-        users[username] = socket.id
+        users[username] = socket.id;
         console.log("User joiner", username)
     })
     socket.on("send_message",async(data)=>{
@@ -45,6 +45,7 @@ io.on("connection",(socket)=>{
     })
 
     socket.on("typing",({sender, receiver})=>{
+        console.log("Typing event server:", sender, receiver);
         const receiverSocketId = users[receiver];
         if(receiverSocketId){
             socket.to(receiverSocketId).emit("typing",{sender})
@@ -56,7 +57,7 @@ io.on("connection",(socket)=>{
             socket.to(receiverSocketId).emit("stop_typing",{sender})
         }
     })
-    socket.on("disconnected",()=>{
+    socket.on("disconnect",()=>{
         for(let user in users){
             if(users[user] === socket.id){
                 delete users[user];
