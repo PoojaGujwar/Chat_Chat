@@ -27,6 +27,7 @@ io.on("connection",(socket)=>{
     console.log("Connected successfully",socket.id)
 
     socket.on("join", (username)=>{
+        socket.join(username)
         users[username] = socket.id;
         console.log("User joiner", username)
     })
@@ -34,13 +35,9 @@ io.on("connection",(socket)=>{
         const {sender,receiver,message} = data;
         const newMessage = new Message({sender,receiver,message})
         await newMessage.save()
-
-        const receiverSocketId = users[receiver];
-
-        //send only reciever
-        if(receiverSocketId){
-            socket.to(receiverSocketId).emit("receive_message",data)
-        }
+        
+            socket.to(receiver).emit("receive_message",data)
+        
         // socket.broadcast.emit("receive_message",data)
     })
 
@@ -52,10 +49,9 @@ io.on("connection",(socket)=>{
         }
     })
     socket.on("stop_typing",({sender, receiver})=>{
-        const receiverSocketId = users[receiver];
-        if(receiverSocketId){
-            socket.to(receiverSocketId).emit("stop_typing",{sender, receiver})
-        }
+       
+            socket.to(receiver).emit("stop_typing",{sender, receiver})
+
     })
     socket.on("disconnect",()=>{
         for(let user in users){
