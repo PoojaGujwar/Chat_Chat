@@ -33,7 +33,7 @@ io.on("connection",(socket)=>{
     })
     socket.on("send_message",async(data)=>{
         const {sender,receiver,message} = data;
-        const newMessage = new Message({sender,receiver,message})
+        const newMessage = new Message({sender,receiver,message,seen:false})
         await newMessage.save()
         
             socket.to(receiver).emit("receive_message",data)
@@ -73,6 +73,11 @@ app.get("/messages",async(req,res)=>{
     }catch(error){
         res.status(500).json({message:"Error fetching message"})
     }
+})
+app.post("/messages/seen",async(req,res)=>{
+const {sender, receiver} = req.body
+await Message.updateMany({sender, receiver, seen:false},{$set:{seen:true}})
+res.json({success:true})
 })
 
 app.get("/users",async(req,res)=>{
